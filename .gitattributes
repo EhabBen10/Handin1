@@ -1,0 +1,27 @@
+# Set core.autocrlf to false to prevent Git from converting line endings
+# This ensures consistent line endings across platforms
+* text=auto eol=lf
+
+# Explicitly declare files that should always have LF line endings on checkout
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Declare files that are binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
