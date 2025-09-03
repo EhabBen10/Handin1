@@ -4,7 +4,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Prerequisites
 
-- Node.js 18.x or 20.x
+- Node.js 20.x
 - npm (comes with Node.js)
 - Git
 
