@@ -10,6 +10,16 @@ export interface CreditCard {
   expirationMonth: number;
   expirationYear: number;
   issuer: string;
+  transactions: Transaction[];
+}
+
+export interface Transaction {
+  uid: string;
+  cardNumber: number;
+  amount: number;
+  currencyCode: string;
+  transactionDate: string;
+  comment: string;
 }
 
 @Injectable({
@@ -22,8 +32,12 @@ export class CreditCardsService {
     return this.httpClient.get<CreditCard[]>(`${environment.apiBase}/api/CreditCard`);
   }
 
-  public getCreditCardById(cardNumber: string): Observable<CreditCard> {
-    return this.httpClient.get<CreditCard>(`${environment.apiBase}/api/CreditCard/${cardNumber}`);
+  public getCreditCardById(cardNumber: number): Observable<CreditCard> {
+    return this.httpClient.get<CreditCard>(`${environment.apiBase}/api/CreditCard/cardnumber?cardnumber=${cardNumber}`);
+  }
+
+  public deleteCreditCard(cardNumber: number): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.apiBase}/api/CreditCard/cardnumber?cardnumber=${cardNumber}`);
   }
 
 }

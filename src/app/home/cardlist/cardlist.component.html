@@ -5,7 +5,7 @@
         <p><strong>Card Number:</strong> {{ card.cardNumber }}</p>
         <p><strong>Cardholder Name:</strong> {{ card.cardHolderName }}</p>
         <p><strong>Issuer:</strong> {{ card.issuer }}</p>
-        <a [routerLink]="[idx]">View Details</a>
+        <a [routerLink]="[card.cardNumber]">View Details</a>
     </div>
     } @empty {
     <p>No credit cards found.</p>
