@@ -1,36 +1,28 @@
 <h2>Card Details</h2>
 <div *ngIf="creditCard$ | async as creditCard; else loading">
-    <div *ngIf="originalCreditCard(); else notFound" class="card-details-grid">
+    <div class="card-details-grid">
         <div class="card-field-title">Card Number</div>
         <div class="card-field-title">Card Holder</div>
         <div class="card-field-title">CSC Code</div>
-        <div class="card-field-title">Expiration Month</div>
-        <div class="card-field-title">Expiration Year</div>
+        <div class="card-field-title">Expiration Date</div>
         <div class="card-field-title">Issuer</div>
-        <input class="card-field-value" [value]="cardNumber()" (input)="cardNumber.set($any($event.target).value)" />
 
-        <input class="card-field-value" [value]="cardHolderName()"
-            (input)="cardHolderName.set($any($event.target).value)" />
 
-        <input class="card-field-value" [value]="cscCode()" (input)="cscCode.set($any($event.target).value)" />
-
-        <input class="card-field-value" [value]="expirationMonth()"
-            (input)="expirationMonth.set($any($event.target).value)" />
-
-        <input class="card-field-value" [value]="expirationYear()"
-            (input)="expirationYear.set($any($event.target).value)" />
-
-        <input class="card-field-value" [value]="issuer()" (input)="issuer.set($any($event.target).value)" />
+        <div class="card-field-value">{{ creditCard.cardNumber }}</div>
+        <div class="card-field-value">{{ creditCard.cardHolderName }}</div>
+        <div class="card-field-value">{{ creditCard.cscCode }}</div>
+        <div class="card-field-value">{{ (creditCard.expirationMonth || 0) | expirationDate:(creditCard.expirationYear
+            || 0) }}
+        </div>
+        <div class="card-field-value">{{ creditCard.issuer }}</div>
     </div>
 
     <div class="card-actions">
-        <button class="button" [disabled]="!hasChanges()" (click)="resetChanges()">Reset Changes</button>
-        <button class="button" [disabled]="!hasChanges()" (click)="saveChanges()">Save Changes</button>
         <button class="button-red" (click)="deleteCard()">Remove credit card</button>
     </div>
     <hr class="card-details-divider" />
     <h2>Credit Card Transactions</h2>
-    <table class="transactions-table" *ngIf="originalCreditCard()?.transactions?.length; else noTransactions">
+    <table class="transactions-table" *ngIf="creditCard.transactions?.length; else noTransactions">
         <tr>
             <td>uid</td>
             <td>cardNumber</td>
@@ -39,7 +31,7 @@
             <td>transactionDate</td>
             <td>comment</td>
         </tr>
-        <tr *ngFor="let transaction of originalCreditCard()?.transactions">
+        <tr *ngFor="let transaction of creditCard.transactions">
             <td>{{ transaction.uid }}</td>
             <td>{{ transaction.cardNumber }}</td>
             <td>{{ transaction.amount }}</td>
@@ -61,14 +53,3 @@
 <ng-template #noTransactions>
     <p>No transactions found for this credit card.</p>
 </ng-template>
-
-
-
-<!-- F3.1 Screen shall contain elements displaying the following credit card properties: card_number, cardholder_name, csc_code, expiration_date_month, expiration_date_year, issuer
-
-
-F3.2 Screen shall contain the option to remove the credit card
-
-F3.3 Screen shall contain the option edit information about the credit card
-
-F3.4 Screen shall contain a list of transactions for the credit card -->

@@ -1,11 +1,11 @@
 <h2>Credit Cards List</h2>
 <div class="credit-cards-list">
     @for (card of creditCards(); track card.cardNumber; let idx = $index) {
-    <div class="credit-card">
+    <div class="credit-card" [routerLink]="[card.cardNumber]" role="button" tabindex="0">
         <p><strong>Card Number:</strong> {{ card.cardNumber }}</p>
         <p><strong>Cardholder Name:</strong> {{ card.cardHolderName }}</p>
+        <p><strong>Expiration:</strong> {{ card.expirationMonth | expirationDate:card.expirationYear }}</p>
         <p><strong>Issuer:</strong> {{ card.issuer }}</p>
-        <a [routerLink]="[card.cardNumber]">View Details</a>
     </div>
     } @empty {
     <p>No credit cards found.</p>
