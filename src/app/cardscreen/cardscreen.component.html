@@ -1,0 +1,74 @@
+<h2>Card Screen</h2>
+<form [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
+    <!-- Card Number -->
+    <div class="form-group">
+        <label for="cardNumber">Card Number *</label>
+        <input type="text" id="cardNumber" class="form-control" formControlName="cardNumber"
+            placeholder="Enter card number">
+        <div [hidden]="creditCardForm.get('cardNumber')?.valid || creditCardForm.get('cardNumber')?.pristine"
+            class="alert alert-danger">
+            Card number is required, must be 16 digits long, and contain only numbers.
+        </div>
+    </div>
+
+    <!-- Card Holder Name -->
+    <div class="form-group">
+        <label for="cardHolderName">Card Holder Name *</label>
+        <input type="text" id="cardHolderName" class="form-control" formControlName="cardHolderName"
+            placeholder="Enter card holder name">
+        <div [hidden]="creditCardForm.get('cardHolderName')?.valid || creditCardForm.get('cardHolderName')?.pristine"
+            class="alert alert-danger">
+            Card holder name is required and must contain only letters and spaces.
+        </div>
+    </div>
+
+    <!-- CSC Code -->
+    <div class="form-group">
+        <label for="cscCode">CSC Code *</label>
+        <input type="text" id="cscCode" class="form-control" formControlName="cscCode" placeholder="Enter CSC code">
+        <div [hidden]="creditCardForm.get('cscCode')?.valid || creditCardForm.get('cscCode')?.pristine"
+            class="alert alert-danger">
+            CSC code is required, must be 3 digits long, and contain only numbers.
+        </div>
+    </div>
+
+    <!-- Expiration Month -->
+    <div class="form-group">
+        <label for="expirationMonth">Expiration Month *</label>
+        <input type="text" id="expirationMonth" class="form-control" formControlName="expirationMonth"
+            placeholder="Enter expiration month">
+        <div [hidden]="creditCardForm.get('expirationMonth')?.valid || creditCardForm.get('expirationMonth')?.pristine"
+            class="alert alert-danger">
+            Expiration month is required, must be 2 digits long, and contain only numbers.
+        </div>
+    </div>
+
+    <!-- Expiration Year -->
+    <div class="form-group">
+        <label for="expirationYear">Expiration Year *</label>
+        <input type="text" id="expirationYear" class="form-control" formControlName="expirationYear"
+            placeholder="Enter expiration year">
+        <div [hidden]="creditCardForm.get('expirationYear')?.valid || creditCardForm.get('expirationYear')?.pristine"
+            class="alert alert-danger">
+            Expiration year is required, must be 4 digits long, and contain only numbers.
+        </div>
+    </div>
+
+    <!-- Issuer (Optional) -->
+    <div class="form-group">
+        <label for="issuer">Issuer</label>
+        <input type="text" id="issuer" class="form-control" formControlName="issuer" placeholder="Enter card issuer">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="creditCardForm.invalid">
+            Add Credit Card
+        </button>
+        <button type="button" class="btn btn-secondary ml-2" (click)="creditCardForm.reset()">
+            Reset Form
+        </button>
+
+    </div>
+
+</form>

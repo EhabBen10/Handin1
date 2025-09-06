@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface CreditCard {
-  cardNumber: string;
+  cardNumber: number;
   cscCode: number;
   cardHolderName: string;
   expirationMonth: number;
@@ -38,6 +38,10 @@ export class CreditCardsService {
 
   public deleteCreditCard(cardNumber: number): Observable<void> {
     return this.httpClient.delete<void>(`${environment.apiBase}/api/CreditCard/cardnumber?cardnumber=${cardNumber}`);
+  }
+
+  public addCreditCard(card: CreditCard): Observable<CreditCard> {
+    return this.httpClient.post<CreditCard>(`${environment.apiBase}/api/CreditCard`, card);
   }
 
 }
