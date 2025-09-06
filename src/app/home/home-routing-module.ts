@@ -9,7 +9,7 @@ const routes: Routes = [
     component: CardlistComponent
   },
   {
-    path: ":id",
+    path: ":cardNumber",
     component: CarddetailsComponent
   }
 ];
