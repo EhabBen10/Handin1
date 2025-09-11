@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { Transaction } from '../../services/creditcards.service';
+
 
 @Component({
   selector: 'app-transactions-list',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './transactions-list.component.html',
-  styleUrl: './transactions-list.component.scss'
+  styleUrls: ['./transactions-list.component.scss']
 })
 export class TransactionsListComponent {
-
+    @Input() transactions: Transaction[] = [];
 }

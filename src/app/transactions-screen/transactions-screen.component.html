@@ -1,3 +1,12 @@
-<p>transactions-screen works!</p>
+<h2>All Transactions</h2>
+<!-- <h3>Raw JSON data (debug)</h3>
+<pre>{{ transactions | json }}</pre> -->
+<ng-container *ngIf="transactions.length > 0; else loading">
+  <app-transactions-list [transactions]="transactions"></app-transactions-list>
+</ng-container>
 
-<app-transactions-list></app-transactions-list>
+<ng-template #loading>
+  <p>Loading transactions...</p>
+</ng-template>
+
+
