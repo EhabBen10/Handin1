@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {  TransactionsListComponent } from './transactions-list/transactions-list.component';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TransactionsListComponent } from './transactions-list/transactions-list.component';
 import { Transaction } from '../services/creditcards.service';
 import { TransactionsService } from '../services/transactions.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-transactions-screen',
@@ -13,14 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 
 export class TransactionsScreenComponent implements OnInit {
-  transactions: Transaction[] = [];
+  private transactionsService = inject(TransactionsService);
 
-  constructor(private svc: TransactionsService) {}
+  transactions = signal<Transaction[]>([]);
 
   ngOnInit(): void {
     const token = localStorage.getItem('authToken') ?? '';
-    this.svc.getTransactions(token).subscribe({
-      next: (data) => this.transactions = data,
+    this.transactionsService.getTransactions(token).subscribe({
+      next: (data) => this.transactions.set(data),
       error: (err) => console.error('Failed to load transactions', err)
     });
   }

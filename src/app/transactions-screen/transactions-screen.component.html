@@ -1,8 +1,8 @@
 <h2>All Transactions</h2>
 <!-- <h3>Raw JSON data (debug)</h3>
 <pre>{{ transactions | json }}</pre> -->
-<ng-container *ngIf="transactions.length > 0; else loading">
-  <app-transactions-list [transactions]="transactions"></app-transactions-list>
+<ng-container *ngIf="transactions() && transactions().length > 0; else loading">
+  <app-transactions-list [transactions]="transactions()"></app-transactions-list>
 </ng-container>
 
 <ng-template #loading>
