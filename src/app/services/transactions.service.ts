@@ -13,4 +13,9 @@ export class TransactionsService {
   public getTransactions(): Observable<Transaction[]> {
     return this.httpClient.get<Transaction[]>(`${environment.apiBase}/api/Transaction`);
   }
+
+  public addTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.httpClient.post<Transaction>(`${environment.apiBase}/api/Transaction`, transaction);
+}
+
 }
