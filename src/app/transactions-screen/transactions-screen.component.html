@@ -28,9 +28,18 @@
 
 <hr />
 
-<ng-container *ngIf="transactions() && transactions().length > 0; else loading">
+<label>
+  Filter by Card Number:
+  <input 
+    type="text" 
+    [value]="filterCardNumber()" 
+    (input)="onFilterChange($event.target.value)" 
+    placeholder="Enter card number" />
+</label>
+
+<ng-container *ngIf="filteredTransactions() && filteredTransactions().length > 0; else loading">
   <app-transactions-list 
-    [transactions]="transactions()" 
+    [transactions]="filteredTransactions()" 
     (delete)="deleteTransaction($event)">
   </app-transactions-list>
 </ng-container>

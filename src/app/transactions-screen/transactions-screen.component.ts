@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransactionsListComponent } from './transactions-list/transactions-list.component';
 import { Transaction } from '../services/creditcards.service';
@@ -15,7 +15,15 @@ import { FormsModule } from '@angular/forms';
 export class TransactionsScreenComponent implements OnInit {
   private transactionsService = inject(TransactionsService);
   transactions = signal<Transaction[]>([]);
+  filterCardNumber = signal<string>(''); 
+
   
+  filteredTransactions = computed(() => {
+    const filter = this.filterCardNumber().trim();
+    if (!filter) return this.transactions();
+    return this.transactions().filter(t => t.cardNumber.toString().includes(filter));
+  });
+
   newTransaction: Partial<Transaction> = {
     cardNumber: 0,
     amount: 0,
@@ -33,6 +41,10 @@ export class TransactionsScreenComponent implements OnInit {
     this.loadTransactions();
   }
 
+  onFilterChange(value: string) {
+    this.filterCardNumber.set(value);
+  }
+  
   addTransaction() {
     const tx: Transaction = {
       uid: '', 
