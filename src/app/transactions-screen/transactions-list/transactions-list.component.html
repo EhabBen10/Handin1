@@ -1,25 +1,25 @@
-<p>transactions-list workssss!</p>
-
-<table border="1" cellpadding="5" cellspacing="0">
-  <tr>
-    <th>UID</th>
-    <th>Card Number</th>
-    <th>Amount</th>
-    <th>Currency</th>
-    <th>Date</th>
-    <th>Comment</th>
-  </tr>
-  <tr *ngFor="let t of transactions">
-    <td>{{ t.uid }}</td>
-    <td>{{ t.cardNumber }}</td>
-    <td>{{ t.amount }}</td>
-    <td>{{ t.currencyCode }}</td>
-    <td>{{ t.transactionDate }}</td>
-    <td>{{ t.comment }}</td>
-    <td>
-      <button style="background:red;color:white" (click)="delete.emit(t.uid)">
-        Delete
-      </button>
-    </td>
-  </tr>
+<table>
+  <thead>
+    <tr>
+      <th>UID</th>
+      <th>Card Number</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Date</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of transactions">
+      <td>{{ t.uid }}</td>
+      <td>{{ t.cardNumber }}</td>
+      <td>{{ t.amount }}</td>
+      <td>{{ t.currencyCode }}</td>
+      <td>{{ t.transactionDate }}</td>
+      <td>{{ t.comment }}</td>
+      <td>
+        <button class="delete-btn" (click)="delete.emit(t.uid)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
