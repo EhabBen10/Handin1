@@ -1,7 +1,6 @@
 <table>
   <thead>
     <tr>
-      <th>UID</th>
       <th>Card Number</th>
       <th>Amount</th>
       <th>Currency</th>
@@ -11,7 +10,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let t of transactions">
-      <td>{{ t.uid }}</td>
       <td>{{ t.cardNumber }}</td>
       <td>{{ t.amount }}</td>
       <td>{{ t.currencyCode }}</td>

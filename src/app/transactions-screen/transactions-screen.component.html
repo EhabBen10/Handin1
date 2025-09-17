@@ -2,29 +2,35 @@
 <!-- <h3>Raw JSON data (debug)</h3>
 <pre>{{ transactions | json }}</pre> -->
 
-<form (ngSubmit)="addTransaction()" #txForm="ngForm">
-  <div>
-    <label>Card Number:</label>
-    <input type="number" [(ngModel)]="newTransaction.cardNumber" name="cardNumber" required />
-  </div>
+<button class="toggle-btn" (click)="toggleAddTransactionForm()">
+  {{ showAddTransactionForm() ? 'Hide Add Transaction' : 'Want to add a transaction?' }}
+</button>
 
-  <div>
-    <label>Amount:</label>
-    <input type="number" [(ngModel)]="newTransaction.amount" name="amount" required />
-  </div>
+<div *ngIf="showAddTransactionForm()">
+  <form (ngSubmit)="addTransaction()" #txForm="ngForm">
+    <div>
+      <label>Card Number:</label>
+      <input type="number" [(ngModel)]="newTransaction.cardNumber" name="cardNumber" required />
+    </div>
 
-  <div>
-    <label>Currency:</label>
-    <input type="text" [(ngModel)]="newTransaction.currencyCode" name="currencyCode" required />
-  </div>
+    <div>
+      <label>Amount:</label>
+      <input type="number" [(ngModel)]="newTransaction.amount" name="amount" required />
+    </div>
 
-  <div>
-    <label>Comment:</label>
-    <input type="text" [(ngModel)]="newTransaction.comment" name="comment" />
-  </div>
+    <div>
+      <label>Currency:</label>
+      <input type="text" [(ngModel)]="newTransaction.currencyCode" name="currencyCode" required />
+    </div>
 
-  <button type="submit">Add Transaction</button>
-</form>
+    <div>
+      <label>Comment:</label>
+      <input type="text" [(ngModel)]="newTransaction.comment" name="comment" />
+    </div>
+
+    <button type="submit">Add Transaction</button>
+  </form>
+</div>
 
 <hr />
 

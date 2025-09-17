@@ -14,10 +14,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class TransactionsScreenComponent implements OnInit {
   private transactionsService = inject(TransactionsService);
-  transactions = signal<Transaction[]>([]);
-  filterCardNumber = signal<string>(''); 
 
-  
+  transactions = signal<Transaction[]>([]);
+  filterCardNumber = signal<string>('');
+  showAddTransactionForm = signal<boolean>(false); 
+
   filteredTransactions = computed(() => {
     const filter = this.filterCardNumber().trim();
     if (!filter) return this.transactions();
@@ -44,7 +45,11 @@ export class TransactionsScreenComponent implements OnInit {
   onFilterChange(value: string) {
     this.filterCardNumber.set(value);
   }
-  
+
+  toggleAddTransactionForm() {
+    this.showAddTransactionForm.set(!this.showAddTransactionForm());
+  }
+
   addTransaction() {
     const tx: Transaction = {
       uid: '', 
@@ -59,6 +64,7 @@ export class TransactionsScreenComponent implements OnInit {
       next: () => {
         this.loadTransactions();
         this.newTransaction = { cardNumber: null, amount: null, currencyCode: '', comment: '' };
+        this.showAddTransactionForm.set(false);
       },
       error: err => console.error('Failed to add transaction', err)
     });
