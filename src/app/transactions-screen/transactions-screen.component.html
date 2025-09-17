@@ -29,11 +29,12 @@
 <hr />
 
 <ng-container *ngIf="transactions() && transactions().length > 0; else loading">
-  <app-transactions-list [transactions]="transactions()"></app-transactions-list>
+  <app-transactions-list 
+    [transactions]="transactions()" 
+    (delete)="deleteTransaction($event)">
+  </app-transactions-list>
 </ng-container>
 
 <ng-template #loading>
   <p>Loading transactions...</p>
 </ng-template>
-
-

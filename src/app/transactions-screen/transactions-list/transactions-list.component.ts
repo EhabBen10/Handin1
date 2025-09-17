@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Transaction } from '../../services/creditcards.service';
 
 
@@ -12,4 +12,5 @@ import { Transaction } from '../../services/creditcards.service';
 })
 export class TransactionsListComponent {
     @Input() transactions: Transaction[] = [];
+    @Output() delete = new EventEmitter<string>();
 }

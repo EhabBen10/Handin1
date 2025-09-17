@@ -16,6 +16,9 @@ export class TransactionsService {
 
   public addTransaction(transaction: Transaction): Observable<Transaction> {
     return this.httpClient.post<Transaction>(`${environment.apiBase}/api/Transaction`, transaction);
-}
-
+  }
+  
+  public deleteTransaction(uid: string): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.apiBase}/api/Transaction/uid?uid=${uid}`);
+  }
 }

@@ -52,4 +52,11 @@ export class TransactionsScreenComponent implements OnInit {
       error: err => console.error('Failed to add transaction', err)
     });
   }
+
+  deleteTransaction(uid: string) {
+    this.transactionsService.deleteTransaction(uid).subscribe({
+      next: () => this.loadTransactions(),
+      error: err => console.error('Failed to delete transaction', err)
+    });
+  }
 }
