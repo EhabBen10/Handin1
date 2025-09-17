@@ -21,12 +21,12 @@ export class TransactionsScreenComponent implements OnInit {
   filteredTransactions = computed(() => {
     const filter = this.filterCardNumber().trim();
     if (!filter) return this.transactions();
-    return this.transactions().filter(t => t.cardNumber.toString().includes(filter));
+    return this.transactions().filter(t => t.cardNumber?.toString().includes(filter));
   });
 
   newTransaction: Partial<Transaction> = {
-    cardNumber: 0,
-    amount: 0,
+    cardNumber: null,
+    amount: null,
     currencyCode: '',
     comment: ''
   };
@@ -58,8 +58,7 @@ export class TransactionsScreenComponent implements OnInit {
     this.transactionsService.addTransaction(tx).subscribe({
       next: () => {
         this.loadTransactions();
-        
-        this.newTransaction = { cardNumber: 0, amount: 0, currencyCode: '', comment: '' };
+        this.newTransaction = { cardNumber: null, amount: null, currencyCode: '', comment: '' };
       },
       error: err => console.error('Failed to add transaction', err)
     });
