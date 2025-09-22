@@ -1,0 +1,24 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Transaction } from './creditcards.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TransactionsService {
+  private httpClient = inject(HttpClient);
+
+  public getTransactions(): Observable<Transaction[]> {
+    return this.httpClient.get<Transaction[]>(`${environment.apiBase}/api/Transaction`);
+  }
+
+  public addTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.httpClient.post<Transaction>(`${environment.apiBase}/api/Transaction`, transaction);
+  }
+  
+  public deleteTransaction(uid: string): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.apiBase}/api/Transaction/uid?uid=${uid}`);
+  }
+}

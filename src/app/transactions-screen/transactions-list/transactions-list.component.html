@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Card Number</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Date</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of transactions">
+      <td>{{ t.cardNumber }}</td>
+      <td>{{ t.amount }}</td>
+      <td>{{ t.currencyCode }}</td>
+      <td>{{ t.transactionDate }}</td>
+      <td>{{ t.comment }}</td>
+      <td>
+        <button class="delete-btn" (click)="delete.emit(t.uid)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

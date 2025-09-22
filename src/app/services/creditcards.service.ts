@@ -15,8 +15,8 @@ export interface CreditCard {
 
 export interface Transaction {
   uid: string;
-  cardNumber: number;
-  amount: number;
+  cardNumber: number | null;
+  amount: number | null;
   currencyCode: string;
   transactionDate: string;
   comment: string;

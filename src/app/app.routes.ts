@@ -13,5 +13,9 @@ export const routes: Routes = [
     {
         path: 'cardscreen',
         loadComponent: () => import('./cardscreen/cardscreen.component').then(m => m.CardscreenComponent)
+    },
+    {
+        path: 'transactions-screen',
+        loadComponent: () => import('./transactions-screen/transactions-screen.component').then(m => m.TransactionsScreenComponent)
     }
 ];
